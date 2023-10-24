@@ -1,10 +1,10 @@
-# **Workflow and Prerequisite**
+## **Part 1 - Workflow**
 
 ## Solution Architecture
 
 ![Textract-TL_Textract_Part_1](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/b3e72e2e-9c60-4d90-8a3e-62d426578eda)
 
-## **Part 1 - Workflow**
+**Workflow**
 
 1. Uploaded a image with content File on S3 Bucket
 2. On Completions of upload on S3 triggers a notification and sends message on SQS. 
