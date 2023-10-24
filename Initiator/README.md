@@ -1,5 +1,48 @@
 # **Workflow and Prerequisite**
 
+## Solution Architecture
+
+![Textract-TL_Textract_Part_1](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/b3e72e2e-9c60-4d90-8a3e-62d426578eda)
+
+## **Part 1 - Workflow**
+
+1. Uploaded a image with content File on S3 Bucket
+2. On Completions of upload on S3 triggers a notification and sends message on SQS. 
+3. Once SQS receives the message, it create a queue and trigger the Lambda. 
+4. Lambda receives a sample payload which the python code process and follow the next step.
+```
+{
+  "Records": [
+    {
+      "messageId": "19dd0b57-b21e-4ac1-bd88-01bbb068cb78",
+      "receiptHandle": "MessageReceiptHandle",
+      "body": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"ap-south-1\",\"eventTime\":\"2023-06-23T03:52:49.568Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:XXXXXXXXXX:XXXXXXXX\"},\"requestParameters\":{\"sourceIPAddress\":\"xx.xx.xx.xx\"},\"responseElements\":{\"x-amz-request-id\":\"ABCDEF12345\",\"x-amz-id-2\":\"\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"SQS_NAME\",\"bucket\":{\"name\":\"bucket-name\",\"ownerIdentity\":{\"principalId\":\"XXXXXXXXXX\"},\"arn\":\"arn:aws:s3:::bucket-name\"},\"object\":{\"key\":\"folder/filename\",\"size\":393295,\"eTag\":\"74c336a816e3f23c101b96dfa17c43ba\",\"sequencer\":\"006495171172E17CBD\"}}}]}",
+      "attributes": {
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "1523232000000",
+        "SenderId": "123456789012",
+        "ApproximateFirstReceiveTimestamp": "1523232000001"
+      },
+      "messageAttributes": {},
+      "md5OfBody": "{{{md5_of_body}}}",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:us-east-1:1234567890:QueueName",
+      "awsRegion": "region"
+    }
+  ]
+}
+```
+4. Lambda initiate Textract Client and then make a call to [start_document_text_detection](https://docs.aws.amazon.com/textract/latest/dg/API_StartDocumentTextDetection.html) to submit a async job to detect document text. In return it provide as JobId which is saved along with other metadata like filename, bucketName , start date time in dynamodb using DynamoDB client by calling [put_item](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html) 
+
+5. On Sucessful execution lambda function retuen following response.
+```
+{
+  "statusCode": 200,
+  "body": "completed"
+}
+```
+
+
 ## AWS Services Used
 ----
 - [Amazon Simple Storage Service (S3)](https://aws.amazon.com/s3/) - Object storage built to retrieve any amount of data from anywhere
@@ -160,6 +203,5 @@
 ```
 
 
-## Solution Overview
 
-[image]
+
