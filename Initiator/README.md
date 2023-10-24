@@ -2,7 +2,8 @@
 
 ## Solution Architecture
 
-![Textract-TL_Textract_Part_1](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/b3e72e2e-9c60-4d90-8a3e-62d426578eda)
+![Textract-TL_Textract_Part_1](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/96a376e5-5abf-4964-b239-18393b151f03)
+
 
 **Workflow**
 
