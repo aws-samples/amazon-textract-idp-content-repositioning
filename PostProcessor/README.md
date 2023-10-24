@@ -1,6 +1,10 @@
-# **Workflow**
-
 ## **Part 2 - Workflow**
+
+## Solution Overview
+
+![Textract-TL_Textract_Part_2](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/1b61a366-6908-4c8d-a4e9-6f1c5fd15b97)
+
+# **Workflow**
 
 1. Textract Jobs will take few minutes to extract the content and on completion will send the notification to the SNS which will fan out the message to different target. In this case it will send a message on email and lambda for post processing. Here is the sample payload for notification.
 
@@ -12,7 +16,5 @@
 
 3. Once lambda fetch all records for the processed job, it calculate and reposition the content to provide a meaningful context and then update the dyanamoDB with processed data. The updation of dynamoDB is based on the JobId which is the primary key.
 
-## Solution Overview
 
-![Textract-TL_Textract_Part_2](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/1b61a366-6908-4c8d-a4e9-6f1c5fd15b97)
 
