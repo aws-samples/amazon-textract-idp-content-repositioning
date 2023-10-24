@@ -7,7 +7,7 @@ An approach to extract and reposition text from images for meaningful content in
 
 ## Solution Architecture
 
-![Textract-TL_Textract](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/8573a205-b2a0-43d9-a061-c60b515e9e41)
+![Textract-TL_Textract](https://github.com/aws-samples/amazon-textract-idp-content-repositioning/assets/32926625/7fc8fd3d-9d14-43b4-bac7-c07de846889d)
 
 <br/>
 
